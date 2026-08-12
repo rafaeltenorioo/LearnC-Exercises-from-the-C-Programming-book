@@ -1,34 +1,54 @@
 #include <stdio.h>
-// #include <stdbool.h>
+
+#define N 10
+
+void selection_sort(int k, int a[]);
 
 int main(void)
 {
+    int array[N];
 
-    int digit_seen[10] = {0};
-    int digit;
-    long n;
+    printf("Enter a series of %d integers: \n", N);
 
-    printf("Enter a number: \n");
-    scanf("%ld", &n);
-
-    while (n > 0)
+    for (int i = 0; i < N; i++)
     {
-        digit = n % 10;
-        digit_seen[digit] += 1;
-        n /= 10;
+        scanf("%d", &array[i]);
     }
 
-    printf("Repeated digit(s): ");
+    /*
+    int spaces = 0;
+    */
 
-    for (int i = 0; i < 10; i++)
+    selection_sort(N, array);
+
+    printf("Serie in a sort way: ");
+    for (int i = 0; i < N; i++)
     {
-        if (digit_seen[i] > 1)
-        {
-            printf("%d ", i);
-        }
+        printf("%d ", array[i]);
     }
-
     printf("\n");
 
     return 0;
+}
+
+void selection_sort (int k , int a[]) {
+
+    if (k <= 1)
+    {
+       return;
+    }
+    
+    int max_index = 0;
+    for (int i = 1; i < k; i++)
+    {
+        if (a[i] > a[max_index])
+        {
+            max_index = i;
+        }   
+    }
+    int temp = a[max_index];
+    a[max_index] = a[k - 1];
+    a[k - 1] = temp;
+
+    selection_sort(k - 1, a);
 }

@@ -1,57 +1,24 @@
 #include <stdio.h>
-#include <ctype.h>
+
+int p_x(int x, int k);
 
 int main(void)
 {
-    int n = 0;
-    char word[100], ch;
+    int x;
 
-    printf("Enter a message: \n");
+    printf("Enter a value for x and see the value of the polynomial 3x⁵ + 2x⁴ - 5x³ - x² + 7x - 6: \n");
 
-    while ((ch = getchar()) != '\n')
-    {
-        word[n] = toupper(ch);
-        n++;
-    }
+    scanf("%d", &x);
 
-    for (int i = 0; i < n; i++)
-    {
-
-        switch (word[i])
-        {
-        case 'A':
-            word[i] = '4';
-            break;
-        case 'B':
-            word[i] = '8';
-            break;
-        case 'E':
-            word[i] = '3';
-            break;
-        case 'I':
-            word[i] = '1';
-            break;
-        case 'O':
-            word[i] = '0';
-            break;
-        case 'S':
-            word[i] = '5';
-            break;
-        }
-    }
-
-    printf("In B1FF-speak: ");
-    for (int i = 0; i < n; i++)
-    {
-            printf("%c", word[i]);
-        
-    }
-    printf("\n");
-
-    for (int i = 0; i < 10; i++)
-    {
-        printf("%c", '!');
-    }
+    printf("%d \n", 3*p_x(x, 5) + 2*p_x(x, 4) - 5*p_x(x, 3) - p_x(x, 2) + 7*p_x(x, 1) - 6);
 
     return 0;
+}
+
+int p_x(int x, int k) {
+    for (int i = 0; i < k; i++)
+    {
+        x *= 1 ;
+    }
+    return x;
 }
